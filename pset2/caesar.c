@@ -30,25 +30,26 @@ int main(int argc, string argv[])
     for (int i = 0, len = strlen(cleartext); i < len; i++)
     {
         char c = cleartext[i];
-        if (isalpha(c)) // only shift alphabetic chars
-        {
-            c = shift_char(c, n);
-        }
-        printf("%c", c);
+        printf("%c", shift_char(c, n));
     }
+    
     printf("\n");
 }
 
 void usage(string progname)
 {
     printf("Usage: %s <N>\n", progname);
-    printf("       where N is an integer greater than zero\n");
+    printf("\n  Where N must be an integer greater than zero\n");
 }
 
 char shift_char(char c, int n)
 {
-    n = 0; // satisfiy compiler warning about unused variable
-    
+    // no change needed if char is non-alpha or shift amount is zero
+    if (!isalpha(c) || n == 0)
+    {
+        return c;
+    }
+
     //
     // what goes here?
     //
