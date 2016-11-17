@@ -16,8 +16,9 @@ int main(int argc, string argv[])
         return 1;
     }
     
-    // exercise specifies shift must be a positive number 
     int n = atoi(argv[1]);
+
+    // exercise specifies shift must be a positive number 
     if (n < 1)
     {
         usage(argv[0]);
@@ -25,7 +26,7 @@ int main(int argc, string argv[])
     }
     
     string cleartext = get_string();
-    
+
     // iterate over chars of cleartext, processing alpha chars with caeser shift
     for (int i = 0, len = strlen(cleartext); i < len; i++)
     {
@@ -50,9 +51,14 @@ char shift_char(char c, int n)
         return c;
     }
 
-    //
-    // what goes here?
-    //
+    // modulo 26 only works if letter is in range 0-25
+    // so convert from ascii code to ordinal index
+    char ascii_offset = islower(c) ? 'a' : 'A';
+    int idx = c - ascii_offset;
+
+    // apply shift, mod 26 to wrap if needed...
+    int shifted_idx = (idx + n) % 26;
     
-    return c;
+    // ...then convert back to ascii
+    return shifted_idx + ascii_offset;
 }
