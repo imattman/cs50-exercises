@@ -4,6 +4,10 @@
 #include <cs50.h>
 #include <ctype.h>
 
+/*
+ * revvigenere:  Reverse Vigenere for computing the complement keyword for use with a Vigenere cipher
+ */
+
 void usage(string progname);
 
 int main(int argc, string argv[])
